@@ -16,6 +16,7 @@ import com.androidmedia.gabriel.categoriesmobgen.gson_media_converter.CategoryJs
 import com.androidmedia.gabriel.categoriesmobgen.models.Category;
 import com.androidmedia.gabriel.categoriesmobgen.retrofit_media.ApiClient;
 import com.androidmedia.gabriel.categoriesmobgen.retrofit_media.ApiInterface;
+import com.androidmedia.gabriel.categoriesmobgen.singleton.CategoryLab;
 
 import java.util.List;
 

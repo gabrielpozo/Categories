@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.androidmedia.gabriel.categoriesmobgen.CategoryLab;
+import com.androidmedia.gabriel.categoriesmobgen.singleton.CategoryLab;
 import com.androidmedia.gabriel.categoriesmobgen.R;
 import com.androidmedia.gabriel.categoriesmobgen.databinding.CardViewHolderBinding;
 import com.androidmedia.gabriel.categoriesmobgen.databinding.FragmentCategoryListBinding;

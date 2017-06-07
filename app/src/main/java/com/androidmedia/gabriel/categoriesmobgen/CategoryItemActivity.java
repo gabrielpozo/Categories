@@ -17,6 +17,8 @@ import com.androidmedia.gabriel.categoriesmobgen.fragments_ui_views.BookItemFrag
 import com.androidmedia.gabriel.categoriesmobgen.fragments_ui_views.CharacterItemFragment;
 import com.androidmedia.gabriel.categoriesmobgen.fragments_ui_views.HouseItemFragment;
 import com.androidmedia.gabriel.categoriesmobgen.models.Category;
+import com.androidmedia.gabriel.categoriesmobgen.singleton.CategoryLab;
+
 import java.util.List;
 
 

@@ -1,11 +1,11 @@
-package com.androidmedia.gabriel.categoriesmobgen;
+package com.androidmedia.gabriel.categoriesmobgen.singleton;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
+import com.androidmedia.gabriel.categoriesmobgen.R;
 import com.androidmedia.gabriel.categoriesmobgen.database.CategoryBaseHelper;
 import com.androidmedia.gabriel.categoriesmobgen.database.CategoryCursorWrapper;
 import com.androidmedia.gabriel.categoriesmobgen.database.CategoryDbSchema;
