@@ -1,0 +1,147 @@
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.androidmedia.gabriel.categoriesmobgen.view_models.CharacterViewModel"/>
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+
+        android:orientation="vertical"
+        android:elevation="6dp"
+        android:transitionName="fab_transition">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/aliases"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/songs_count_padding_bottom"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:text="@{viewModel.aliases}"
+                android:textColor="@color/album_title"
+                android:textSize="@dimen/album_title"
+                />
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/playedByText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="14dp"
+                    android:paddingBottom="@dimen/songs_count_padding_bottom"
+                    android:paddingLeft="@dimen/album_title_padding"
+                    android:paddingRight="@dimen/album_title_padding"
+                    android:text="Played By:"
+                    android:textSize="@dimen/description_count"
+                    card_view:layout_constraintLeft_toLeftOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/playedBy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginEnd="130dp"
+                    android:layout_marginRight="50dp"
+                    android:paddingBottom="@dimen/songs_count_padding_bottom"
+                    android:paddingLeft="@dimen/album_title_padding"
+                    android:paddingRight="@dimen/album_title_padding"
+                    android:paddingTop="@dimen/album_title_padding"
+                    android:text="@{viewModel.playedBy}"
+                    android:textColor="@color/album_title"
+                    android:textSize="@dimen/description_count"
+                    card_view:layout_constraintRight_toRightOf="parent"
+                    card_view:layout_constraintLeft_toRightOf="@+id/playedByText"
+                    android:layout_marginLeft="100dp"
+                    card_view:layout_constraintHorizontal_bias="1.0"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="4dp"/>
+
+
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="3dp"
+                    android:paddingBottom="@dimen/songs_count_padding_bottom"
+                    android:paddingLeft="@dimen/album_title_padding"
+
+                    android:paddingRight="@dimen/album_title_padding"
+                    android:text="Character Name:"
+                    android:textSize="@dimen/description_count"
+                    card_view:layout_constraintLeft_toLeftOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/nameActor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/songs_count_padding_bottom"
+                    android:paddingLeft="@dimen/album_title_padding"
+                    android:paddingRight="@dimen/album_title_padding"
+                    android:text="@{viewModel.name}"
+                    android:textSize="@dimen/description_count"
+                    android:textColor="@color/album_title"
+                    android:layout_marginLeft="100dp"
+                    card_view:layout_constraintLeft_toLeftOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="50dp"
+                    card_view:layout_constraintRight_toRightOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.0"/>
+
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/songs_count_padding_bottom"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:text="@{viewModel.gender}"
+                android:textColor="@color/album_title"
+                android:textSize="@dimen/description_count"/>
+
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</layout>
