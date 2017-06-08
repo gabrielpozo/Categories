@@ -1,11 +1,9 @@
-[![Build Status]
-
 # Cantegories Mobgen
 Sample Android project of a [CategoriesMobgen](http://android-test.mobgen.com/api1/) client.
 
 The client will load automatically the  popular items(books, houses , characaters) from Cantegories API, which can be found here: http://android-test.mobgen.com/api1/
 
-![Demo]https://github.com/gabrielpozo/Categories/tree/master/raw/master/gifCategories.gif
+![Demo](https://github.com/sebaslogen/Blendletje/raw/master/screen-record-demo.gif)
 
 Technical features
 ============
