@@ -46,10 +46,10 @@ public class CategoryItemActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_pager);
-        String categoryId = (String) getIntent().getSerializableExtra(EXTRA_CATEGORY_ID);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_category_pager);
+        String categoryId = (String) getIntent().getSerializableExtra(EXTRA_CATEGORY_ID);
+
         PagerAdapter pagerAdapter = new FixedTabsPagerAdapter(getSupportFragmentManager());
 
         mCategories = CategoryLab.getCategoryLab(this).getCategories();

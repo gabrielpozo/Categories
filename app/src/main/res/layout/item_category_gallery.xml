@@ -16,8 +16,9 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
                                                  android:background="@android:color/white"
-                                                 android:fitsSystemWindows="true"
-                                                 android:transitionName="layout_transaction">
+
+
+    >
 
 
 
@@ -50,9 +51,9 @@
                 android:adjustViewBounds="true"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:transitionName="pic_transaction"
                 app:imageUrl="@{viewModel.imageUrl}"
                 app:layout_collapseMode="parallax"
+                android:transitionName="pic_transaction"
                 />
 
 

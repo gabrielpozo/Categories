@@ -3,9 +3,12 @@ package com.androidmedia.gabriel.categoriesmobgen;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 
 import com.androidmedia.gabriel.categoriesmobgen.fragments_ui_views.CategoryListFragment;
@@ -20,11 +23,26 @@ public class CategoryListActivity extends SingleFragmentActivity implements Call
     public static final String TRANSITION_LAY = "layout_transaction";
     public static final String TRANSITION_PIC = "pic_transaction";
     public static final String TRANSITION_TITLE = "title_transaction";
+    public static final String TRANSITION_SCREEN = "fab_transition";
 
     @Override
     protected Fragment createFragment() {
         return new CategoryListFragment();
     }
+
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+      //  setupWindowAnimations();
+
+    }
+
+
 
     @Override
     protected int getLayoutResId() {
@@ -35,7 +53,7 @@ public class CategoryListActivity extends SingleFragmentActivity implements Call
     @Override
     public void onCategorySelected(Category category, View v) {
 
-        Pair<View, String> pair = Pair.create(v.findViewById(R.id.card_layout), TRANSITION_LAY);
+        Pair<View, String> pair = Pair.create(v.findViewById(R.id.linear), TRANSITION_SCREEN);
         Pair<View, String> p1 = Pair.create(v.findViewById(R.id.titleCategory), TRANSITION_TITLE);
         Pair<View, String> p2 = Pair.create(v.findViewById(R.id.initial_thumbnail), TRANSITION_PIC);
 
@@ -46,7 +64,7 @@ public class CategoryListActivity extends SingleFragmentActivity implements Call
 
         Intent transitionIntent = CategoryItemActivity.newIntent(this,category.getId());
         act.startActivity(transitionIntent,options.toBundle());
-
+        //startActivity(transitionIntent);
 
     }
 

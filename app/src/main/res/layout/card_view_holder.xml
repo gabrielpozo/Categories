@@ -28,6 +28,7 @@
         android:background="@android:color/background_light"
         android:orientation="vertical"
         android:elevation="25dp"
+        android:transitionName="fab_transition"
         >
 
 

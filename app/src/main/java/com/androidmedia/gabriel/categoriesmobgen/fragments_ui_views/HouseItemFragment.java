@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.androidmedia.gabriel.categoriesmobgen.singleton.CategoryLab;
 import com.androidmedia.gabriel.categoriesmobgen.R;
@@ -41,7 +42,7 @@ public class HouseItemFragment extends Fragment {
     ItemCategoryGalleryBinding binding;
     private Category mCategory;
     private static final String ARG_CATEGORY_ID="categoryId";
-    private static final String items_per_page = "5";
+    private static final String items_per_page = "10";
     private List<House> mHouses = new ArrayList<House>();
     private LinearLayoutManager mLinearLayoutManager;
     private int pastVisiblesItems, visibleItemCount, totalItemCount;
@@ -123,6 +124,8 @@ public class HouseItemFragment extends Fragment {
                 List<HouseJson> houses = response.body();
 
                 if (houses.size()>0) {
+                    /*Toast toast = Toast.makeText(getActivity(), "Pagination executed, page: " +mCurrentPage, Toast.LENGTH_LONG);
+                    toast.show();*/
                     updateListBooks(houses);
                     setupAdapter();
                     downloadCompleted = true;

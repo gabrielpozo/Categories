@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.androidmedia.gabriel.categoriesmobgen.singleton.CategoryLab;
 import com.androidmedia.gabriel.categoriesmobgen.R;
@@ -37,7 +38,7 @@ import retrofit2.Response;
  * Created by Gabriel on 6/2/2017.
  */
 
-public class BookItemFragment extends Fragment implements CallBacksBook {
+public class BookItemFragment extends Fragment{
 
     private static final String TAG = "splashActivity";
     private BookAdapter mAdapter;
@@ -82,21 +83,15 @@ public class BookItemFragment extends Fragment implements CallBacksBook {
 
                 if(dy > 0) //check for scroll down
                 {
-                    Log.i(TAG, "Esta scrolleando!!!!");
-
-                    visibleItemCount = mLinearLayoutManager.getChildCount();
+                                       visibleItemCount = mLinearLayoutManager.getChildCount();
                     totalItemCount = mLinearLayoutManager.getItemCount();
                     pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition();
 
                     if ( downloadCompleted && (visibleItemCount + pastVisiblesItems) >= totalItemCount)
                     {
-                        //loading = true;
-                        Log.i(TAG, "LAST ITEM WOWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW !!!!!!!");
-                        //Do pagination , fetch new data
                         currentPage++;
                         updateUI();
-                        // new FetchItemsTask().execute(current_page);
-                       // currentPage++;
+
                     }
 
                 }
@@ -130,6 +125,8 @@ public class BookItemFragment extends Fragment implements CallBacksBook {
                List<BookJson> books = response.body();
 
                if (books.size()>0) {
+                  /* Toast toast = Toast.makeText(getActivity(), "Pagination executed, page: " +currentPage, Toast.LENGTH_LONG);
+                   toast.show();*/
                    updateListBooks(books);
                    setupAdapter();
                    Log.i(TAG, "updateUI completada y downloadCompletd a true " );
@@ -204,14 +201,6 @@ public class BookItemFragment extends Fragment implements CallBacksBook {
 
 
 
-    @Override
-    public void onRequestNextPage(RecyclerView rV, int rx, int dy) {
-
-        Log.i(TAG, "on RequestNextPage, valor de rx: "+ "y valor de dy: "+ dy );
-
-    }
-
-
     private class BookAdapter extends RecyclerView.Adapter<BookHolder>{
 
         private List<Book> mBooks;
@@ -256,23 +245,15 @@ public class BookItemFragment extends Fragment implements CallBacksBook {
         public void bindBook(Book book) {
 
             mBook = book;
-            Log.i(TAG, "on VAuel name: "+ book.getName() );
-          // mBinding.setViewModel(new BookViewModel());
+
             mBinding.getViewModel().setBook(mBook);
-          //  mBinding.getViewModel().setCallbacks(null);
+
 
             mBinding.executePendingBindings();
 
         }
 
     }
-
-
-
-
-
-
-
 
 
 }
