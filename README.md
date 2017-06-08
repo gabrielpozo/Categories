@@ -9,7 +9,8 @@ Technical features
 ============
 The code demostrates how to use together multiple design patterns, libraries.
 
-The code implements pagination when scrolling down through the category items (books, characters and houses) using the APi calls
+The code implements pagination when scrolling down through the category item view(books, characters or houses) querying the APi calls
+for some resource(10 items by default) instead of delivering all of the results.
 
 
 Libraries
@@ -22,12 +23,13 @@ Libraries
 - Picasso
 - Glide
 - Mockito
+- Hamcrest
 
 
 
 Patterns
 -------
-- Model view view-Model
+- Model View View-Model
 - Singleton
 - Continuos integration
 
@@ -44,5 +46,5 @@ _Note: Make sure to connect a phone to the computer or start an emulator before 
 Continuous integration environment
 ============
 Builds are triggered and automatically built on every commit to git repository, executing all unit tests.
-Build history and reports can be 0n teh development branch of the project: https://bitbucket.org/mobgen/interview-android-test2-gabriel/commits/branch/development
+Build history and reports are on the development branch of the project: https://bitbucket.org/mobgen/interview-android-test2-gabriel/commits/branch/development
 
