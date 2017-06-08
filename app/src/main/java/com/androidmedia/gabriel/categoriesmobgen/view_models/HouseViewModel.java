@@ -28,7 +28,7 @@ public class HouseViewModel extends BaseObservable{
 
     @Bindable
     public String getTitle(){
-        return house.getTitle();
+        return house.getTitle().equalsIgnoreCase("")?"Title not available":house.getTitle();
     }
     @Bindable
     public String getName(){

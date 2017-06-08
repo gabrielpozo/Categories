@@ -68,6 +68,8 @@ public class CategoryListActivity extends SingleFragmentActivity implements Call
 
     }
 
+
+
     public static Intent newIntent(Context packageContext){
 
         Intent intent = new Intent(packageContext,CategoryListActivity.class);

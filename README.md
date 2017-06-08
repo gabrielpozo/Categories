@@ -15,7 +15,7 @@ for some resource(10 items by default) instead of delivering all of the results.
 
 Libraries
 -------
-- Retrofit, OkHttp
+- Retrofit
 - Gson
 - SQL Lite
 - AppCompat
@@ -36,7 +36,7 @@ Patterns
 
 Running the project and the tests
 =============
-Application's apk can be directly [downloaded from here]
+Application's apk can be directly [downloaded from here](https://github.com/gabrielpozo/Categories/raw/master/releases/app-debug.apk)
 
 Open the project in Android Studio and select the gradle task '**installDebug**' or simply press the Run button.
 
@@ -45,6 +45,6 @@ _Note: Make sure to connect a phone to the computer or start an emulator before 
 
 Continuous integration environment
 ============
-Builds are triggered and automatically built on every commit to git repository, executing all unit tests.
+Builds are triggered and automatically built on every commit to git repository, executing all unit tests on View models.
 Build history and reports are on the development branch of the project: https://bitbucket.org/mobgen/interview-android-test2-gabriel/commits/branch/development
 

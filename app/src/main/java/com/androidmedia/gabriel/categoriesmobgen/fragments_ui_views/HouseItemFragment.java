@@ -66,7 +66,7 @@ public class HouseItemFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.item_category_gallery,container,false);
         binding.setViewModel(new CategoryViewModel());
 
-        binding.getViewModel().setData(mCategory);
+        binding.getViewModel().setCategory(mCategory);
         binding.executePendingBindings();
         binding.itemRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -89,7 +89,6 @@ public class HouseItemFragment extends Fragment {
                     {
                          mCurrentPage++;
                             updateUI();
-
                     }
 
                 }
@@ -97,14 +96,10 @@ public class HouseItemFragment extends Fragment {
             }
         });
 
-
         setupAdapter();
 
         return binding.getRoot();
     }
-
-
-
 
 
     private void downloadJsonHouseList() {
@@ -119,13 +114,9 @@ public class HouseItemFragment extends Fragment {
         call.enqueue(new Callback<List<HouseJson>>() {
             @Override
             public void onResponse(Call<List<HouseJson>> call, Response<List<HouseJson>> response) {
-
-                //Log.i(TAG, "A ver "  + response.body().get(0).getCountry());
                 List<HouseJson> houses = response.body();
 
                 if (houses.size()>0) {
-                    /*Toast toast = Toast.makeText(getActivity(), "Pagination executed, page: " +mCurrentPage, Toast.LENGTH_LONG);
-                    toast.show();*/
                     updateListBooks(houses);
                     setupAdapter();
                     downloadCompleted = true;
@@ -163,9 +154,7 @@ public class HouseItemFragment extends Fragment {
     private void updateUI(){
 
         if(mHouseRecyclerView != null){
-            //mHouses.clear();
             mHouseRecyclerView.getAdapter().notifyDataSetChanged();
-
         }
 
         downloadJsonHouseList();
@@ -173,7 +162,6 @@ public class HouseItemFragment extends Fragment {
     }
 
     private void setupAdapter(){
-
 
         if (isAdded())
         {
@@ -188,9 +176,7 @@ public class HouseItemFragment extends Fragment {
 
     public static HouseItemFragment newInstance(String categoryId){
 
-
         Bundle args = new Bundle();
-
         args.putSerializable(ARG_CATEGORY_ID, categoryId);
         HouseItemFragment fragment = new HouseItemFragment();
         fragment.setArguments(args);

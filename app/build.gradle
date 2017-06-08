@@ -39,5 +39,8 @@ dependencies {
     //Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    //Testing
+    testCompile 'org.mockito:mockito-core:2.7.22'
+    testCompile 'org.hamcrest:hamcrest-junit:2.0.0.0'
 
 }

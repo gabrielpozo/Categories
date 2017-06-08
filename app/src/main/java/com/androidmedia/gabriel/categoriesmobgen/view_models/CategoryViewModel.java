@@ -23,6 +23,7 @@ public class CategoryViewModel extends BaseObservable {
     public CategoryViewModel(CallBacksCategory callback){
         mCallback = callback;
     }
+
     public CategoryViewModel(){
 
     }
@@ -53,7 +54,7 @@ public class CategoryViewModel extends BaseObservable {
         notifyChange();
     }
 
-    public void setData(Category category) {
+    public void setCategory(Category category) {
         this.mCategory = category;
         notifyChange();
     }
@@ -62,8 +63,6 @@ public class CategoryViewModel extends BaseObservable {
 
     public void onCategoryClicked(){
       mCallback.onCategorySelected(mCategory, mView);
-
     }
-
 
 }

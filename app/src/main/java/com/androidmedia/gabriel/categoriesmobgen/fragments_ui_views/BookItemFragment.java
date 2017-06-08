@@ -70,7 +70,7 @@ public class BookItemFragment extends Fragment{
         binding = DataBindingUtil.inflate(inflater, R.layout.item_category_gallery,container,false);
         binding.setViewModel(new CategoryViewModel());
 
-        binding.getViewModel().setData(mCategory);
+        binding.getViewModel().setCategory(mCategory);
         binding.executePendingBindings();
         binding.itemRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

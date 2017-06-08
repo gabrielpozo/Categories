@@ -14,6 +14,7 @@ public class Category implements Comparator<Category> {
     private int thumbnail;
 
 
+
     public String getId() {
         return mId;
     }

@@ -208,7 +208,9 @@
                     card_view:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="6dp"
                     card_view:layout_constraintLeft_toRightOf="@+id/isbnValue"
-                    android:layout_marginLeft="46dp"/>
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="2dp"
+                    card_view:layout_constraintRight_toRightOf="parent"/>
 
 
             </android.support.constraint.ConstraintLayout>
