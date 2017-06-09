@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CategoriesMobgen.iml" filepath="$PROJECT_DIR$/CategoriesMobgen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CategoriesMobgenReleased.iml" filepath="$PROJECT_DIR$/CategoriesMobgenReleased.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mobgen-interview-a vver ahora.iml" filepath="$PROJECT_DIR$/mobgen-interview-a vver ahora.iml" />
     </modules>
   </component>
 </project>

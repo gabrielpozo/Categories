@@ -14,12 +14,6 @@ public class CharacterViewModel extends BaseObservable {
 
     private Character character;
 
-
-    @Bindable
-    public Character getCharacter() {
-        return character;
-    }
-
     public void setCharacter(Character character) {
         this.character = character;
         notifyChange();

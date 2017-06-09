@@ -10,14 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.androidmedia.gabriel.categoriesmobgen.singleton.CategoryLab;
 import com.androidmedia.gabriel.categoriesmobgen.R;
 import com.androidmedia.gabriel.categoriesmobgen.databinding.BookItemBinding;
 import com.androidmedia.gabriel.categoriesmobgen.databinding.ItemCategoryGalleryBinding;
 import com.androidmedia.gabriel.categoriesmobgen.gson_media_converter.BookJson;
-import com.androidmedia.gabriel.categoriesmobgen.interface_categories.CallBacksBook;
 import com.androidmedia.gabriel.categoriesmobgen.models.Book;
 
 import com.androidmedia.gabriel.categoriesmobgen.models.Category;
@@ -41,7 +39,6 @@ import retrofit2.Response;
 public class BookItemFragment extends Fragment{
 
     private static final String TAG = "splashActivity";
-    private BookAdapter mAdapter;
     ItemCategoryGalleryBinding binding;
     private Category mCategory;
     private static final String ARG_CATEGORY_ID="categoryId";
@@ -83,7 +80,7 @@ public class BookItemFragment extends Fragment{
 
                 if(dy > 0) //check for scroll down
                 {
-                                       visibleItemCount = mLinearLayoutManager.getChildCount();
+                    visibleItemCount = mLinearLayoutManager.getChildCount();
                     totalItemCount = mLinearLayoutManager.getItemCount();
                     pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition();
 
@@ -93,19 +90,13 @@ public class BookItemFragment extends Fragment{
                         updateUI();
 
                     }
-
                 }
-
             }
         });
 
-
         setupAdapter();
-
         return binding.getRoot();
     }
-
-
 
 
 
@@ -113,23 +104,18 @@ public class BookItemFragment extends Fragment{
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-
-       Log.i(TAG, "Categorias "  + mCategory.getUrl() );
         downloadCompleted = false;
-        Call<List<BookJson>> call = apiService.getBooks("list1",String.valueOf(currentPage),items_per_page);
+        String[] list = mCategory.getUrl().split("/");
+        Call<List<BookJson>> call = apiService.getBooks(list[2],String.valueOf(currentPage),items_per_page);
         call.enqueue(new Callback<List<BookJson>>() {
            @Override
            public void onResponse(Call<List<BookJson>> call, Response<List<BookJson>> response) {
 
-              // Log.i(TAG, "Valor de CurernPAGE "  + currentPage);
                List<BookJson> books = response.body();
 
                if (books.size()>0) {
-                  /* Toast toast = Toast.makeText(getActivity(), "Pagination executed, page: " +currentPage, Toast.LENGTH_LONG);
-                   toast.show();*/
                    updateListBooks(books);
                    setupAdapter();
-                   Log.i(TAG, "updateUI completada y downloadCompletd a true " );
                    downloadCompleted = true;
                }
 
@@ -137,9 +123,7 @@ public class BookItemFragment extends Fragment{
 
            @Override
            public void onFailure(Call<List<BookJson>> call, Throwable t) {
-
                Log.i(TAG, "on Failure " );
-
            }
        });
 
@@ -159,7 +143,6 @@ public class BookItemFragment extends Fragment{
             book.setReleased(bookJson.getReleased());
 
             mBooks.add(book);
-
         }
 
     }
@@ -167,17 +150,12 @@ public class BookItemFragment extends Fragment{
     private void updateUI(){
 
         if(mBookRecyclerView != null){
-            //mHouses.clear();
             mBookRecyclerView.getAdapter().notifyDataSetChanged();
-
         }
-
         downloadJsonBookList();
-
     }
 
     private void setupAdapter(){
-
 
         if (isAdded())
         {
@@ -189,9 +167,7 @@ public class BookItemFragment extends Fragment{
 
     public static BookItemFragment newInstance(String categoryId){
 
-
         Bundle args = new Bundle();
-
         args.putSerializable(ARG_CATEGORY_ID, categoryId);
         BookItemFragment fragment = new BookItemFragment();
         fragment.setArguments(args);
@@ -205,12 +181,9 @@ public class BookItemFragment extends Fragment{
 
         private List<Book> mBooks;
 
-
-
         public BookAdapter(List<Book> books) {
             mBooks = books;
         }
-
 
         @Override
         public BookHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -222,9 +195,8 @@ public class BookItemFragment extends Fragment{
 
         @Override
         public void onBindViewHolder(BookHolder holder, int position) {
-             Book book =  mBooks.get(position);
+            Book book =  mBooks.get(position);
             holder.bindBook(book);
-
         }
 
         @Override
@@ -245,10 +217,7 @@ public class BookItemFragment extends Fragment{
         public void bindBook(Book book) {
 
             mBook = book;
-
             mBinding.getViewModel().setBook(mBook);
-
-
             mBinding.executePendingBindings();
 
         }

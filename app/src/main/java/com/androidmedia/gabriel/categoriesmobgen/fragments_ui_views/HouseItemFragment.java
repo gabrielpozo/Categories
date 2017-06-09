@@ -38,7 +38,6 @@ import retrofit2.Response;
 public class HouseItemFragment extends Fragment {
 
     private static final String TAG = "splashActivity";
-    private HouseAdapter mAdapter;
     ItemCategoryGalleryBinding binding;
     private Category mCategory;
     private static final String ARG_CATEGORY_ID="categoryId";
@@ -57,7 +56,6 @@ public class HouseItemFragment extends Fragment {
         mCategory = CategoryLab.getCategoryLab(getActivity()).getCategory(categoryId);
 
         updateUI();
-
     }
 
     @Override
@@ -79,8 +77,6 @@ public class HouseItemFragment extends Fragment {
 
                 if(dy > 0) //check for scroll down
                 {
-                    Log.i(TAG, "Esta scrolleando!!!!");
-
                     visibleItemCount = mLinearLayoutManager.getChildCount();
                     totalItemCount = mLinearLayoutManager.getItemCount();
                     pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition();
@@ -97,7 +93,6 @@ public class HouseItemFragment extends Fragment {
         });
 
         setupAdapter();
-
         return binding.getRoot();
     }
 
@@ -105,12 +100,9 @@ public class HouseItemFragment extends Fragment {
     private void downloadJsonHouseList() {
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-
-
-        Log.i(TAG, "Categorias "  + mCategory.getUrl() );
-
         downloadCompleted = false;
-        Call<List<HouseJson>> call = apiService.getHouses("list2",String.valueOf(mCurrentPage),items_per_page);
+        String[] list = mCategory.getUrl().split("/");
+        Call<List<HouseJson>> call = apiService.getHouses(list[2],String.valueOf(mCurrentPage),items_per_page);
         call.enqueue(new Callback<List<HouseJson>>() {
             @Override
             public void onResponse(Call<List<HouseJson>> call, Response<List<HouseJson>> response) {
@@ -121,14 +113,11 @@ public class HouseItemFragment extends Fragment {
                     setupAdapter();
                     downloadCompleted = true;
                 }
-
             }
 
             @Override
             public void onFailure(Call<List<HouseJson>> call, Throwable t) {
-
                 Log.i(TAG, "on Failure " );
-
             }
         });
 
@@ -138,14 +127,12 @@ public class HouseItemFragment extends Fragment {
 
         for(HouseJson houseJson: housesJson){
 
-
             House house = new House();
             house.setTitle(houseJson.getTitle());
             house.setRegion(houseJson.getRegion());
             house.setName(houseJson.getName());
 
             mHouses.add(house);
-
 
         }
 
@@ -156,9 +143,7 @@ public class HouseItemFragment extends Fragment {
         if(mHouseRecyclerView != null){
             mHouseRecyclerView.getAdapter().notifyDataSetChanged();
         }
-
         downloadJsonHouseList();
-
     }
 
     private void setupAdapter(){
@@ -172,8 +157,6 @@ public class HouseItemFragment extends Fragment {
     }
 
 
-
-
     public static HouseItemFragment newInstance(String categoryId){
 
         Bundle args = new Bundle();
@@ -185,14 +168,8 @@ public class HouseItemFragment extends Fragment {
     }
 
 
-
-
-
     private class HouseAdapter extends RecyclerView.Adapter<HouseHolder>{
-
         private List<House> mHouses;
-
-
 
         public HouseAdapter(List<House> houses) {
             mHouses = houses;
@@ -211,7 +188,6 @@ public class HouseItemFragment extends Fragment {
         public void onBindViewHolder(HouseHolder holder, int position) {
             House house =  mHouses.get(position);
             holder.bindHouse(house);
-
         }
 
         @Override
@@ -238,7 +214,5 @@ public class HouseItemFragment extends Fragment {
         }
 
     }
-
-
 
 }

@@ -41,7 +41,6 @@ public class CategoryViewModel extends BaseObservable {
     @BindingAdapter({"bind:imageUrl"})
     public static  void loadImage(ImageView view, int thumbnail) {
         Glide.with(view.getContext()).load(thumbnail).into(view);
-
     }
 
     public Category getCategory() {

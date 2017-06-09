@@ -67,12 +67,6 @@ public class CategoryListFragment extends Fragment {
         mCallbacks = null;
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-
-    }
-
 
     private class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
         private List<Category> mCategories;

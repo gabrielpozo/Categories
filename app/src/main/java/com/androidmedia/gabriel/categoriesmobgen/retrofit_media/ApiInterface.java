@@ -19,13 +19,8 @@ import retrofit2.http.Query;
 
 public interface ApiInterface<T> {
 
-
-   /*@GET("rest/")
-   Call<Flickr> getRecentPhotos(@Query("method") String method, @Query("api_key") String apiKey, @Query("format") String format, @Query("nojsoncallback") String nojsoncallback, @Query("lat") double latitude, @Query("lon") double longitude, @Query("extras") String extras);
-*/
     @GET("/api1/index")
     Call<List<CategoryJson>> getCategories();
-
 
     @GET("/api1/{list}")
     Call<List<BookJson>> getBooks(@Path("list") String list, @Query("_page") String page, @Query("_limit") String limit );
@@ -35,6 +30,5 @@ public interface ApiInterface<T> {
 
     @GET("/api1/{list}")
     Call<List<CharacterJson>> getCharacters(@Path("list") String list, @Query("_page") String page, @Query("_limit") String limit );
-
 
 }

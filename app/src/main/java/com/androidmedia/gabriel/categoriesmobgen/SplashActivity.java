@@ -31,6 +31,10 @@ import retrofit2.Response;
 public class SplashActivity extends AppCompatActivity{
     private static final String TAG = "splashActivity";
     private static final String PREF_IS_FIRST_RUN = "isFirstRun";
+    private boolean firstRun=false;
+    /** Called when the activity is first created. */
+    Thread splashTread;
+    private boolean downloadCompleted = true;
 
 
     public void onAttachedToWindow() {
@@ -38,30 +42,26 @@ public class SplashActivity extends AppCompatActivity{
         Window window = getWindow();
         window.setFormat(PixelFormat.RGBA_8888);
     }
-    /** Called when the activity is first created. */
-    Thread splashTread;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-        //TODO
-
-        if (isFirstRun()) {
+        firstRun = isFirstRun();
+        if (firstRun) {
+            Log.i(TAG, "La primera vez que se ejecuta: " );
             loadCategories();
-            Log.i(TAG, "VA a cargar las categorias, por que es el primer run, no ha guardado en sharedPreferences todavia "  );
+        }else{
+            startAnimations();
         }
 
-
-        startAnimations();
     }
-
 
 
     private  boolean isFirstRun(){
 
         return !PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(PREF_IS_FIRST_RUN,false);
-
 
     }
 
@@ -75,20 +75,19 @@ public class SplashActivity extends AppCompatActivity{
 
     private void loadCategories() {
 
-
+        downloadCompleted = false;
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<List<CategoryJson>> call = apiService.getCategories();
         call.enqueue(new Callback<List<CategoryJson>>() {
             @Override
             public void onResponse(Call<List<CategoryJson>> call, Response<List<CategoryJson>> response) {
-                Log.i(TAG, "A ver "  + response.body().get(0).getTitle());
 
                 List<CategoryJson> categories = response.body();
-
                 updateDatabase(categories);
                 setFirstRunValue();
-                launchActity();
+                startAnimations();
+
             }
 
             @Override
@@ -97,13 +96,10 @@ public class SplashActivity extends AppCompatActivity{
             }
         });
 
-
-
     }
 
 
     private void updateDatabase(List<CategoryJson> categories){
-
 
         for(CategoryJson categoryJson: categories){
 
@@ -112,34 +108,17 @@ public class SplashActivity extends AppCompatActivity{
             category.setId(String.valueOf(categoryJson.getId()));
             category.setTitle(categoryJson.getTitle());
             category.setUrl(categoryJson.getHref());
-            String[] apiCallNAme= category.getUrl().split("/");
-
-            Log.i(TAG, "Valor en Splash de category URL, nombre de lista: " + apiCallNAme[2]);
-
 
             CategoryLab.getCategoryLab(getApplicationContext()).addCategory(category);
 
         }
-
-
     }
-
 
     public void launchActity(){
 
         Intent intent = CategoryListActivity.newIntent(this);
-
-
-        /*Intent intent = new Intent(SplashActivity.this,
-                CategoryListActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-        */
         startActivity(intent);
         SplashActivity.this.finish();
-
-
-
     }
 
 
@@ -162,23 +141,17 @@ public class SplashActivity extends AppCompatActivity{
                 try {
                     int waited = 0;
                     // Splash screen pause time
-                    while (waited < 2500) {
+                    while (waited < 2500 ) {
                         sleep(100);
                         waited += 100;
                     }
-
-                   if(!isFirstRun()){
-                       Log.i(TAG, "Ahora lanza la activity, ya que no es la primera vez qu se ejecuta la actividad "  );
-                       launchActity();
-                   }
-
+                    //Log.i(TAG, "Ahora lanza la activity, ya que no es la primera vez qu se ejecuta la actividad "  );
+                    launchActity();
 
 
 
                 } catch (InterruptedException e) {
                     // do nothing
-                } finally {
-                    //SplashActivity.this.finish();
                 }
 
             }
@@ -186,7 +159,5 @@ public class SplashActivity extends AppCompatActivity{
         splashTread.start();
 
     }
-
-
 
 }

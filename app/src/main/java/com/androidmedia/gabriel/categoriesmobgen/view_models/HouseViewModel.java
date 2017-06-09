@@ -13,7 +13,6 @@ public class HouseViewModel extends BaseObservable{
 
     private House house;
 
-
     @Bindable
     public House getHouse() {
         return house;
@@ -23,8 +22,6 @@ public class HouseViewModel extends BaseObservable{
         this.house = house;
         notifyChange();
     }
-
-
 
     @Bindable
     public String getTitle(){
@@ -39,11 +36,6 @@ public class HouseViewModel extends BaseObservable{
     public String getRegion(){
         return house.getRegion();
     }
-
-
-
-
-
 
 
 }

@@ -79,7 +79,6 @@ public class CharacterItemFragment extends Fragment {
 
                 if(dy > 0) //check for scroll down
                 {
-
                     visibleItemCount = mLinearLayoutManager.getChildCount();
                     totalItemCount = mLinearLayoutManager.getItemCount();
                     pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition();
@@ -90,7 +89,6 @@ public class CharacterItemFragment extends Fragment {
                         updateUI();
 
                     }
-
                 }
 
             }
@@ -109,18 +107,15 @@ public class CharacterItemFragment extends Fragment {
     private void downloadJsonCharacterList() {
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-
-        Call<List<CharacterJson>> call = apiService.getCharacters("list3",String.valueOf(mCurrentPage),items_per_page);
+        String[] list = mCategory.getUrl().split("/");
+        Call<List<CharacterJson>> call = apiService.getCharacters(list[2],String.valueOf(mCurrentPage),items_per_page);
         call.enqueue(new Callback<List<CharacterJson>>() {
             @Override
             public void onResponse(Call<List<CharacterJson>> call, Response<List<CharacterJson>> response) {
 
-                //Log.i(TAG, "A ver "  + response.body().get(0).getCountry());
                 List<CharacterJson> characters = response.body();
 
                 if (characters.size()>0) {
-                   /* Toast toast = Toast.makeText(getActivity(), "Pagination executed, page: " +mCurrentPage, Toast.LENGTH_LONG);
-                    toast.show();*/
                     updateListCharacters(characters);
                     setupAdapter();
                     downloadCompleted = true;
@@ -130,9 +125,7 @@ public class CharacterItemFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<CharacterJson>> call, Throwable t) {
-
                 Log.i(TAG, "on Failure " );
-
             }
         });
 
@@ -150,7 +143,6 @@ public class CharacterItemFragment extends Fragment {
             character.setId(characterJson.getId());
 
             mCharacters.add(character);
-
         }
 
     }
@@ -158,17 +150,12 @@ public class CharacterItemFragment extends Fragment {
     private void updateUI(){
 
         if(mCharacterRecyclerView != null){
-            //mHouses.clear();
             mCharacterRecyclerView.getAdapter().notifyDataSetChanged();
-
         }
-
         downloadJsonCharacterList();
-
     }
 
     private void setupAdapter(){
-
 
         if (isAdded())
         {
@@ -180,13 +167,10 @@ public class CharacterItemFragment extends Fragment {
 
     public static CharacterItemFragment newInstance(String categoryId){
 
-
         Bundle args = new Bundle();
-
         args.putSerializable(ARG_CATEGORY_ID, categoryId);
         CharacterItemFragment fragment = new CharacterItemFragment();
         fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -194,21 +178,16 @@ public class CharacterItemFragment extends Fragment {
 
 
     private class CharacterAdapter extends RecyclerView.Adapter<CharacterHolder>{
-
         private List<Character> mCharacters;
-
-
 
         public CharacterAdapter(List<Character> characters) {
             mCharacters = characters;
         }
 
-
         @Override
         public CharacterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             CharacterItemBinding binding = DataBindingUtil.inflate(layoutInflater,R.layout.character_item,parent,false);
-
             return new CharacterHolder(binding);
         }
 
@@ -216,7 +195,6 @@ public class CharacterItemFragment extends Fragment {
         public void onBindViewHolder(CharacterHolder holder, int position) {
             Character character =  mCharacters.get(position);
             holder.bindHouse(character);
-
         }
 
         @Override

@@ -20,7 +20,6 @@ import com.androidmedia.gabriel.categoriesmobgen.models.Category;
  */
 
 public class CategoryListActivity extends SingleFragmentActivity implements CallBacksCategory {
-    public static final String TRANSITION_LAY = "layout_transaction";
     public static final String TRANSITION_PIC = "pic_transaction";
     public static final String TRANSITION_TITLE = "title_transaction";
     public static final String TRANSITION_SCREEN = "fab_transition";
@@ -29,19 +28,6 @@ public class CategoryListActivity extends SingleFragmentActivity implements Call
     protected Fragment createFragment() {
         return new CategoryListFragment();
     }
-
-
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-      //  setupWindowAnimations();
-
-    }
-
 
 
     @Override
@@ -61,10 +47,8 @@ public class CategoryListActivity extends SingleFragmentActivity implements Call
         Activity act = this;
         options = ActivityOptionsCompat.makeSceneTransitionAnimation(act,pair,p1,p2);
 
-
         Intent transitionIntent = CategoryItemActivity.newIntent(this,category.getId());
         act.startActivity(transitionIntent,options.toBundle());
-        //startActivity(transitionIntent);
 
     }
 
@@ -73,7 +57,6 @@ public class CategoryListActivity extends SingleFragmentActivity implements Call
     public static Intent newIntent(Context packageContext){
 
         Intent intent = new Intent(packageContext,CategoryListActivity.class);
-
 
         return  intent;
 
